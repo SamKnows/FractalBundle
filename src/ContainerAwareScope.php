@@ -1,6 +1,6 @@
 <?php
 
-namespace SamJ\FractalBundle;
+namespace Fd\FractalBundle;
 
 use League\Fractal\Scope;
 
