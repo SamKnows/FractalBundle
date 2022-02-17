@@ -17,5 +17,8 @@
         "php": ">=7.4",
         "league/fractal": "~0.17",
         "symfony/framework-bundle": "^4.0|^5.0|^6.0"
+    },
+    "require-dev": {
+        "symfony/maker-bundle": "^1.0"
     }
 }

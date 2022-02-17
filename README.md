@@ -1,73 +1,74 @@
-League Fractal Symfony Bundle
+Fractal Bundle
 =============================
 
 This bundle provides integration of [league/fractal](https://github.com/thephpleague/fractal) for Symfony. In addition it allows you to use [transformers as a services](#using-transformers-as-services).
 
+**This is a fork version of [samjarrett/FractalBundle](https://github.com/samjarrett/FractalBundle).**
+
 ## Getting Started
 
-First of all you need to add dependency to composer.json:
+Requirements:
+
+* PHP >= 7.4
+* Symfony 4, 5 and 6
+
+Install through composer:
 
 ```
-composer require samj/fractal-bundle
+composer require fd6130/fractal-bundle
 ```
 
-Then register bundle in `app/AppKernel.php`:
+If you are using symfony flex, it will automatic register the bundle for you.
 
-```php
-public function registerBundles()
-{
-    return [
-        // ...
-        new SamJ\FractalBundle\SamJFractalBundle(),
-    ];
-}
-```
+## Usage
 
-Now we can write and use fractal transformers:
+You can use command `php bin/console make:fractal-transformer` to create a transformer.
 
-## Using Transformers as Services
-
-There are several cases when you need to pass some dependencies into transformer. The common one is [role/scope based results](https://github.com/thephpleague/fractal/issues/327) in transformers. For example you need to show `email` field only for administrators or owner of user profile:
+Or, just create it by your own and place it in `src/Transformer`.
 
 ```php
 class UserTransformer extends TransformerAbstract
-{
-    private $authorizationCheker;
-    
-    public function __construct(AuthorizationChecker $authorizationCheker)
-    {
-        $this->authorizationCheker = $authorizationCheker;
-    }
-    
-    public function transform(User $user)
+{    
+    public function transform(User $user): array
     {
         $data = [
             'id' => $user->id(),
             'name' => $user->name(),
         ];
         
-        if ($this->authorizationChecker->isGranted(UserVoter::SEE_EMAIL, $user)) {
-            $data['email'] = $user->email();
-        }
+        return $data;
+    }
+}
+
+$resource = new Collection($users, UserTransformer::class);
+
+$response = $manager->createData($resource)->toArray();
+```
+
+### Inject services to the transformers
+
+You can inject services to your transformer through constructor:
+
+```php
+class UserTransformer extends TransformerAbstract
+{
+    private $entityManager;
+    
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+    
+    public function transform(User $user): array
+    {
+        $data = [
+            'id' => $user->id(),
+            'name' => $user->name(),
+        ];
+
+        // $this->entityManager->getRepository(...)
         
         return $data;
     }
 }
 ```
-
-Then you could just register this class as service, and pass service ID as transformer. This bundle then will try to get it from container:
-
-```php
-$resource = new Collection($users, 'app.transformer.user');
-```
-
-This works in includes as well:
-
-```php
-public function includeFriends(User $user)
-{    
-    return $this->collection($user->friends(), 'app.transformer.user');
-}
-```
-
-You could see example of how to use transformers in [sample application](tests/Fixtures) which is used in test suites.
