@@ -1,6 +1,6 @@
 <?php
 
-namespace Fd\FractalBundle\Maker;
+namespace SamKnows\FractalBundle\Maker;
 
 use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Question\Question;

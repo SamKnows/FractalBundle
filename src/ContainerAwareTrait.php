@@ -1,6 +1,6 @@
 <?php
 
-namespace Fd\FractalBundle;
+namespace SamKnows\FractalBundle;
 
 use Psr\Container\ContainerInterface;
 

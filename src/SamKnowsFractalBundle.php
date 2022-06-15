@@ -1,12 +1,12 @@
 <?php
 
-namespace Fd\FractalBundle;
+namespace SamKnows\FractalBundle;
 
-use Fd\FractalBundle\DependencyInjection\Compiler\TransformerPass;
+use SamKnows\FractalBundle\DependencyInjection\Compiler\TransformerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class FdFractalBundle extends Bundle
+class SamKnowsFractalBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

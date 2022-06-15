@@ -1,11 +1,11 @@
 {
-    "name": "fd6130/fractal-bundle",
+    "name": "samknows/fractal-bundle",
     "license": "MIT",
     "type": "library",
     "description": "A Symfony Bundle for Fractal by League. Implements dependency injection into your transformers",
     "autoload": {
         "psr-4": {
-            "Fd\\FractalBundle\\": "src/"
+            "SamKnows\\FractalBundle\\": "src/"
         }
     },
     "autoload-dev": {

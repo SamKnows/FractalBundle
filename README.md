@@ -15,7 +15,7 @@ Requirements:
 Install through composer:
 
 ```
-composer require fd6130/fractal-bundle
+composer require samknows/fractal-bundle
 ```
 
 If you are using symfony flex, it will automatic register the bundle for you.

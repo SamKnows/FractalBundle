@@ -1,7 +1,7 @@
 <?php
 
-use Fd\FractalBundle\ContainerAwareManager;
-use Fd\FractalBundle\Maker\MakeFractalTransformer;
+use SamKnows\FractalBundle\ContainerAwareManager;
+use SamKnows\FractalBundle\Maker\MakeFractalTransformer;
 use League\Fractal\Manager;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $container) {
         ->set(ContainerAwareManager::class, ContainerAwareManager::class)
             ->public()
             ->call('setContainer', [service('service_container')])
-        ->alias('fd_fractal.manager', ContainerAwareManager::class)
+        ->alias('sk_fractal.manager', ContainerAwareManager::class)
             ->public()
         ->alias(Manager::class, ContainerAwareManager::class)
             ->public()

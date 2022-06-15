@@ -1,6 +1,6 @@
 <?php
 
-namespace Fd\FractalBundle\Maker;
+namespace SamKnows\FractalBundle\Maker;
 
 use League\Fractal\TransformerAbstract;
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
@@ -110,7 +110,7 @@ final class MakeFractalTransformer extends AbstractMaker
 
     public function configureDependencies(DependencyBuilder $dependencies)
     {
-        $dependencies->addClassDependency(TransformerAbstract::class, 'fd6130/fractal-bundle');
+        $dependencies->addClassDependency(TransformerAbstract::class, 'samknows/fractal-bundle');
     }
 
     private function createEntityClassQuestion(string $questionText): Question

@@ -1,15 +1,15 @@
 <?php
 
-namespace Fd\FractalBundle\DependencyInjection;
+namespace SamKnows\FractalBundle\DependencyInjection;
 
-use Fd\FractalBundle\DependencyInjection\Compiler\TransformerPass;
+use SamKnows\FractalBundle\DependencyInjection\Compiler\TransformerPass;
 use League\Fractal\TransformerAbstract;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class FdFractalExtension extends Extension
+class SamKnowsFractalExtension extends Extension
 {
     /**
      * {@inheritDoc}
